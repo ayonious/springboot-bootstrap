@@ -15,9 +15,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping("/v1/ayon/controller")
 public class SampleController {
 
-    @Value("${home.name}")
-    String testValue;
-
     @Autowired
     SampleService service;
 

@@ -17,7 +17,7 @@ java -jar learn-spring/target/learn-spring.jar
 
 ## Run through maven command
 ```
-npm install
+npm clean install
 mvn spring-boot:run
 ```
 
@@ -30,10 +30,6 @@ localhost:3194/test2
 ## Test with curl command
 
 ```
-curl -X GET 'http://localhost:3194/v1/ayon/controller/test1'
-curl -X GET 'http://localhost:3194/v1/ayon/controller/test2'
-curl -X GET 'http://localhost:3194/v1/ayon/controller/multiply/12'
-curl -X DELETE 'http://localhost:3194/v1/ayon/controller/multiply/12/delete'
 curl -X POST -H "Content-Type: application/json" -d '{"isBody":"false","id1":"xyz","someStupidId":"123321"}' 'http://localhost:3194/v1/ayon/controller/multiply/12/update'
 ```
 

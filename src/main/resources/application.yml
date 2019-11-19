@@ -8,6 +8,7 @@ server:
 
 home:
   name: somethinginRunningMode
+
 #management:
 #  security:
 #    enabled: false

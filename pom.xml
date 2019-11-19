@@ -8,9 +8,9 @@
         <version>2.2.1.RELEASE</version>
     </parent>
 
-    <groupId>test.learn.spring</groupId>
+    <groupId>spring.bootstrapper</groupId>
     <artifactId>sample-springboot</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
 
     <properties>
         <!-- To make sure that resources are copied as UTF-8 -->
@@ -20,6 +20,9 @@
         <springfox.version>2.9.2</springfox.version>
         <lombok.version>1.18.10</lombok.version>
         <commons-lang3.version>3.9</commons-lang3.version>
+        <spring-boot-starter-test.version>2.2.1.RELEASE</spring-boot-starter-test.version>
+        <spring-test.version>5.2.1.RELEASE</spring-test.version>
+        <junit.version>4.13-rc-1</junit.version>
     </properties>
 
     <dependencies>
@@ -42,19 +45,26 @@
             <version>${commons-lang3.version}</version>
         </dependency>
 
-
         <!-- TEST DEPENDENCIES-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot-starter-test.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
+            <version>${spring-test.version}</version>
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
@@ -64,6 +74,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>12</source>
+                    <target>12</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>test.learn.spring</groupId>
-    <artifactId>learn-spring</artifactId>
+    <artifactId>sample-springboot</artifactId>
     <version>0.2</version>
 
     <properties>

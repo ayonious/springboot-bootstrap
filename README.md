@@ -5,8 +5,9 @@ Things that comes this with:
 
 1. Sample Rest Endpoints
 2. Unit Tests and Integration tests
-3. All updated versions of dependenies
+3. All updated versions of Dependencies
 4. Lombok Samples
+5. Use of @Value and application.yaml file reading
 
 ## Build and run from jar
 ```

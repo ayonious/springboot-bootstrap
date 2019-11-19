@@ -1,10 +1,10 @@
-package test.learn.spring;
+package spring.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Value;
 
-@lombok.Value
-@Builder
+@Value
 @AllArgsConstructor
 public class BodyDto {
     Boolean isBody;

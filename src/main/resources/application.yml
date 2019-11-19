@@ -6,6 +6,8 @@ spring:
 server:
   port: 3194
 
+home:
+  name: somethinginRunningMode
 #management:
 #  security:
 #    enabled: false

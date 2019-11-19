@@ -1,20 +1,33 @@
-# Test Project1
+# Spring boot bootstrapper Project
+
+Clone this project to create your running springboot Application. 
+Things that comes this with:
+
+1. Sample Rest Endpoints
+2. Unit Tests and Integration tests
+3. All updated versions of dependenies
+4. Lombok Samples
 
 ## Build and run from jar
-    mvn clean package
-    java -jar learn-spring/target/learn-spring.jar
+```
+mvn clean package
+java -jar learn-spring/target/learn-spring.jar
+```
 
 ## Run through maven command
 ```
-	mvn spring-boot:run
+npm install
+mvn spring-boot:run
 ```
 
 ## Test if your spring-boot application is running using web browser
-
-    localhost:3194/test1
-    localhost:3194/test2
+```
+localhost:3194/test1
+localhost:3194/test2
+```
 
 ## Test with curl command
+
 ```
 curl -X GET 'http://localhost:3194/v1/ayon/controller/test1'
 curl -X GET 'http://localhost:3194/v1/ayon/controller/test2'

@@ -22,7 +22,7 @@
         <commons-lang3.version>3.9</commons-lang3.version>
         <spring-boot-starter-test.version>2.2.1.RELEASE</spring-boot-starter-test.version>
         <spring-test.version>5.2.2.RELEASE</spring-test.version>
-        <junit.version>4.13-rc-2</junit.version>
+        <junit.version>4.13</junit.version>
     </properties>
 
     <dependencies>

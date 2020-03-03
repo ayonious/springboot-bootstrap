@@ -17,7 +17,7 @@ java -jar learn-spring/target/learn-spring.jar
 
 ## Run through maven command
 ```
-npm clean install
+mvn clean install
 mvn spring-boot:run
 ```
 

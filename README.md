@@ -1,13 +1,28 @@
 # Spring boot bootstrapper Project
 
+[![Build](https://github.com/ayonious/springboot-bootstrap/actions/workflows/build.yml/badge.svg)](https://github.com/ayonious/springboot-bootstrap/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/ayonious/springboot-bootstrap/graph/badge.svg?token=Y2dd2Tlbva)](https://codecov.io/gh/ayonious/springboot-bootstrap)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Clone this project to create your running springboot Application. 
 Things that comes this with:
 
 1. Sample Rest Endpoints
-2. Unit Tests and Integration tests
+2. Unit Tests and Integration tests with 80%+ code coverage
 3. All updated versions of Dependencies
 4. Lombok Samples
 5. Use of @Value and application.yaml file reading
+
+## Test Coverage
+
+The project maintains a high level of test coverage with:
+- Unit tests for individual components
+- Integration tests for end-to-end functionality
+- Automated coverage reporting via JaCoCo and Codecov
+
+## Build Status
+
+The project uses GitHub Actions for continuous integration, running all tests and generating coverage reports on every push and pull request.
 
 ## Build and run from jar
 ```

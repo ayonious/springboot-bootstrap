@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>3.2.3</version>
     </parent>
 
     <groupId>spring.bootstrapper</groupId>
@@ -15,14 +15,18 @@
     <properties>
         <!-- To make sure that resources are copied as UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>13</java.version>
+        <java.version>17</java.version>
 
-        <springfox.version>2.9.2</springfox.version>
-        <lombok.version>1.18.12</lombok.version>
-        <commons-lang3.version>3.10</commons-lang3.version>
-        <spring-boot-starter-test.version>2.2.5.RELEASE</spring-boot-starter-test.version>
-        <spring-test.version>5.2.6.RELEASE</spring-test.version>
-        <junit.version>4.13</junit.version>
+        <springfox.version>3.0.0</springfox.version>
+        <lombok.version>1.18.30</lombok.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
+        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <jacoco.version>0.8.11</jacoco.version>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
+        <argLine>-XX:+EnableDynamicAgentLoading</argLine>
     </properties>
 
     <dependencies>
@@ -38,6 +42,8 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -49,23 +55,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot-starter-test.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring-test.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -74,13 +71,83 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>12</source>
-                    <target>12</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>spring/dto/**</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <propertyName>surefireArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>${surefireArgLine} -XX:+EnableDynamicAgentLoading</argLine>
                 </configuration>
             </plugin>
         </plugins>

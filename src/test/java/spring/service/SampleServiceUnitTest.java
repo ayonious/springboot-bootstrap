@@ -1,17 +1,22 @@
 package spring.service;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import spring.dto.BodyDto;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class SampleServiceUnitTest {
+class SampleServiceUnitTest {
 
     @Test
-    public void shouldTestHappyPath() {
-
+    void shouldTestHappyPath() {
+        // given
         SampleService service = new SampleService();
-        BodyDto b = new BodyDto(true, "asdf", 0L);
-        assertEquals(service.findResult(10L, b),"updatedDatase with10BodyDto(isBody=true, id1=asdf, someStupidId=0)null");
+        BodyDto bodyDto = new BodyDto(true, "asdf", 0L);
+        
+        // when
+        String result = service.findResult(10L, bodyDto);
+        
+        // then
+        assertThat(result).isEqualTo("updatedDatase with10BodyDto(isBody=true, id1=asdf, someStupidId=0)null");
     }
 }

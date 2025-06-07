@@ -1,8 +1,7 @@
 # Spring boot bootstrapper Project
 
-[![Build and Test](https://github.com/ayonious/springboot-bootstrap/actions/workflows/build.yml/badge.svg)](https://github.com/ayonious/springboot-bootstrap/actions/workflows/build.yml)
-[![codecov](https://codecov.io/gh/ayonious/springboot-bootstrap/branch/master/graph/badge.svg)](https://codecov.io/gh/ayonious/springboot-bootstrap)
-[![Test Coverage](https://img.shields.io/badge/coverage-80%25-brightgreen.svg)](https://github.com/ayonious/springboot-bootstrap/actions/workflows/build.yml)
+[![Build](https://github.com/ayonious/springboot-bootstrap/actions/workflows/build.yml/badge.svg)](https://github.com/ayonious/springboot-bootstrap/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/ayonious/springboot-bootstrap/graph/badge.svg?token=Y2dd2Tlbva)](https://codecov.io/gh/ayonious/springboot-bootstrap)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Clone this project to create your running springboot Application. 

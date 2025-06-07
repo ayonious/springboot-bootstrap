@@ -21,10 +21,10 @@ jobs:
         cache: maven
     
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -Dnet.bytebuddy.experimental=true -XX:+EnableDynamicAgentLoading
+      run: mvn -B package --file pom.xml
     
     - name: Run tests with coverage
-      run: mvn test jacoco:report -Dnet.bytebuddy.experimental=true -XX:+EnableDynamicAgentLoading
+      run: mvn test jacoco:report
     
     - name: Upload test results
       if: always()
@@ -34,12 +34,12 @@ jobs:
         path: |
           target/surefire-reports/
           target/site/jacoco/
-
+    
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./target/site/jacoco/jacoco.xml
+        file: target/site/jacoco/jacoco.xml
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: true 

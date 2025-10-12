@@ -21,7 +21,7 @@
         <lombok.version>1.18.42</lombok.version>
         <commons-lang3.version>3.19.0</commons-lang3.version>
         <junit-jupiter.version>6.0.0</junit-jupiter.version>
-        <jacoco.version>0.8.13</jacoco.version>
+        <jacoco.version>0.8.14</jacoco.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>

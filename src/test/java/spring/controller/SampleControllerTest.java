@@ -1,17 +1,13 @@
 package spring.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
+import tools.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import spring.dto.BodyDto;
-import spring.service.SampleService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -25,20 +21,7 @@ class SampleControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @TestConfiguration
-    static class TestConfig {
-        @Bean
-        SampleService sampleService() {
-            return new SampleService() {
-                @Override
-                public String findResult(Long amount, BodyDto dto) {
-                    return "test response";
-                }
-            };
-        }
-    }
+    private JsonMapper objectMapper;
 
     @Test
     void shouldMultiplyAndUpdate() throws Exception {
@@ -51,6 +34,34 @@ class SampleControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(bodyDto)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("test response"));
+                .andExpect(content().string("updatedDatase with100BodyDto(isBody=true, id1=test-id, someStupidId=123)somethinginTestMode"));
+    }
+    @Test
+    void shouldAcceptOriginalReadmePayload() throws Exception {
+        mockMvc.perform(post("/v1/ayon/controller/multiply/12/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {"isBody":"false","id1":"xyz","someStupidId":"123321"}
+                        """))
+                .andExpect(status().isOk())
+                .andExpect(content().string("updatedDatase with12BodyDto(isBody=false, id1=xyz, someStupidId=123321)somethinginTestMode"));
+    }
+
+    @Test
+    void shouldRejectMalformedJson() throws Exception {
+        mockMvc.perform(post("/v1/ayon/controller/multiply/12/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{broken"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldRejectNonNumericAmount() throws Exception {
+        mockMvc.perform(post("/v1/ayon/controller/multiply/invalid/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {"isBody":false,"id1":"xyz","someStupidId":123321}
+                        """))
+                .andExpect(status().isBadRequest());
     }
 } 

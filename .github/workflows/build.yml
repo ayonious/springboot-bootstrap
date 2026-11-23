@@ -44,6 +44,8 @@ jobs:
         retention-days: 5
 
     - name: Upload coverage to Codecov
+      # Dependabot runs can't read secrets; coverage is uploaded after merge
+      if: github.actor != 'dependabot[bot]'
       uses: codecov/codecov-action@v7
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
